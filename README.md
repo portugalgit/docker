@@ -1,5 +1,5 @@
 # docker
-# Inslação do docker no Rock Linux v8.10
+# Instalação do docker no Rock Linux v8.10
 Obs: Deixe a instalação do Rocky Linux 8.10 com GUI e Docker "limpo" (sem Podman).
 
 🔧 1. Remova Podman se veio por engano
