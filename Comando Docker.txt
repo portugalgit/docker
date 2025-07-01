@@ -1,0 +1,45 @@
+# ver container em execução
+root@docker:~# docker ps
+CONTAINER ID   IMAGE     COMMAND      CREATED        STATUS       PORTS     NAMES
+bb44bbba94b6   fedora    "bin/bash"   26 hours ago   Up 2 hours             unruffled_maxwell
+
+#Atachar ao container em execução [conectar-se ao container]
+root@docker:~# docker attach bb44bbba94b6
+[root@bb44bbba94b6 /]#
+
+# Apresentar todos os containers que foram executados na maquina
+master@docker:~$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+bfca53f04fd6   centos:8   "bin/bash"    37 minutes ago   Exited (0) 26 seconds ago             great_lumiere
+60e7aac3a4a3   ubuntu     "/bin/bash"   6 days ago       Exited (0) 6 days ago                 goofy_panini
+a3d25eea0b3e   ubuntu     "/bin/bash"   6 days ago       Exited (0) 6 days ago                 laughing_chebyshev
+master@docker:~$ docker start bfca53f04fd6
+bfca53f04fd6
+master@docker:~$ docker attach bfca53f04fd6
+[root@bfca53f04fd6 /]# 
+
+## Sair sem interromper os processos do container
+CTRL+P+Q
+[root@bb44bbba94b6 /]# read escape sequence
+
+## Status:
+master@docker:~$ docker ps -a
+CONTAINER ID   IMAGE      COMMAND       CREATED        STATUS                       PORTS     NAMES
+bb44bbba94b6   fedora     "bin/bash"    24 hours ago   Up 45 seconds                          unruffled_maxwell
+
+## Baixar todas as imagens do fedora na maquina hospedeira:
+master@docker:~$ docker pull -a fedora
+Objectivos de ter as imagens galradas localmente:
+1. ganhar produtividade
+Nota: Não é uma obrigação!
+
+## Verificar as imagens do fedora que temos localmente | Algumas images são as mesmas basta verificar a TAG
+master@docker:~$ Docker images fedora
+
+## As imagens baixadas são guardadas no diretório:
+master@docker:~#cd /var/lib/docker/overlay2
+
+
+
+
+
