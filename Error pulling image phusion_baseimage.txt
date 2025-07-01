@@ -1,0 +1,50 @@
+🧪 Cenário completo: Configuração de um container para desenvolvimento
+## Objetivo:
+# Criar um container com:
+
+- Apache
+- Cron para backup automático
+- Acesso interativo com terminal
+
+Passos:
+1. Criar um Dockerfile com phusion/baseimage
+Dockerfile
+FROM phusion/baseimage
+
+# Habilita o cron
+RUN apt-get update && apt-get install -y apache2 cron
+
+# Adiciona um script de backup
+COPY backup.sh /etc/cron.daily/backup.sh
+RUN chmod +x /etc/cron.daily/backup.sh
+
+# Habilita o Apache
+RUN mkdir /etc/service/apache2
+COPY run_apache.sh /etc/service/apache2/run
+RUN chmod +x /etc/service/apache2/run
+
+
+2. Script run_apache.sh:
+#!/bin/bash
+exec /usr/sbin/apache2ctl -D FOREGROUND
+
+3. Construir a imagem:
+docker build -t meu-container-completo .
+
+4. Rodar com o comando:
+docker run --rm -ti meu-container-completo /sbin/my_init -- bash -l
+
+## Resultado:
+1. O container inicia com cron e Apache a funcionar
+2. Se houver scripts de setup, são executados
+3. Abre um terminal bash para tu trabalhares
+
+############################################################################################
+✅ Resumo visual
+Etapa			Ação
+docker run		Inicia o container
+--rm -ti		Faz com que seja interativo e descartável após fechar
+phusion/baseimage	Usa uma imagem com init system (suporta múltiplos serviços)
+/sbin/my_init		Simula o arranque de um sistema (serviços + scripts)
+-- bash -l		Abre o terminal após a inicialização
+
