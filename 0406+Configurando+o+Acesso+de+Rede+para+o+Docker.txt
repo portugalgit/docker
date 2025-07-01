@@ -1,0 +1,7 @@
+A abordagem dessa aula pode ser complementada com a documentação do Docker Daemon. Nos links a seguir você pode ver mais detalhes sobre segurança e sobre como expor seu Docker Engine ou Daemon via rede sem grandes riscos.
+
+
+https://docs.docker.com/v17.09/engine/admin/#configure-the-docker-daemon
+
+https://docs.docker.com/engine/reference/commandline/dockerd/
+
